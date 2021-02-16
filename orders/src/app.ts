@@ -25,7 +25,7 @@ app.use(indexOrderRouter);
 app.use(newOrderRouter);
 app.use(showOrderRouter);
 
-app.all('*', async (req, res, next) => {
+app.all('*', async (req, res) => {
   throw new NotFoundError();
 });
 

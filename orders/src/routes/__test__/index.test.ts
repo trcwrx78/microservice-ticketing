@@ -21,7 +21,6 @@ it('fetches orders for an particular user', async () => {
 
   const userOne = global.signin();
   const userTwo = global.signin();
-
   // Create one order as User #1
   await request(app)
     .post('/api/orders')
@@ -46,8 +45,6 @@ it('fetches orders for an particular user', async () => {
     .get('/api/orders')
     .set('Cookie', userTwo)
     .expect(200);
-
-  console.log(response);
 
   // Make sure we only got the orders for User #2
   expect(response.body.length).toEqual(2);
