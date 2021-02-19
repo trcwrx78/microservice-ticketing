@@ -21,3 +21,5 @@ export class TicketUpdatedListener extends Listener<TicketUpdatedEvent> {
     msg.ack();
   }
 }
+
+// Not getting ticket:updated message in orders service after lecture 365. It does get published to tickets service
