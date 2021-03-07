@@ -23,7 +23,7 @@ interface TicketModel extends mongoose.Model<TicketDoc> {
   }): Promise<TicketDoc | null>;
 }
 
-const ticketSchema = new mongoose.Schema<TicketDoc>(
+const ticketSchema = new mongoose.Schema(
   {
     title: {
       type: String,
@@ -46,7 +46,6 @@ const ticketSchema = new mongoose.Schema<TicketDoc>(
 );
 
 ticketSchema.set('versionKey', 'version');
-// Lecture 379 has another implementation to not use this module
 ticketSchema.plugin(updateIfCurrentPlugin);
 
 ticketSchema.statics.findByEvent = (event: { id: string; version: number }) => {
@@ -62,12 +61,8 @@ ticketSchema.statics.build = (attrs: TicketAttrs) => {
     price: attrs.price,
   });
 };
-
-// Run query to look at all orders. Find an order where the ticket
-// is the ticket we just found *and* the orders status is *not* cancelled.
-// If we find an order from that means the ticket *is* reserved
 ticketSchema.methods.isReserved = async function () {
-  // This is === the ticket document that we just called 'isReserved' on
+  // this === the ticket document that we just called 'isReserved' on
   const existingOrder = await Order.findOne({
     ticket: this,
     status: {

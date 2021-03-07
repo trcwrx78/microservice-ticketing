@@ -5,10 +5,12 @@ deploy:
     manifests:
       - ./infra/k8s/*
 build:
-  local:
-    push: false
+  # local:
+  #   push: false
+  googleCloudBuild:
+    projectId: utility-heading-306919
   artifacts:
-    - image: trcwrx78/auth
+    - image: us.gcr.io/utility-heading-306919/auth
       context: auth
       docker:
         dockerfile: Dockerfile
@@ -16,7 +18,7 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: trcwrx78/client
+    - image: us.gcr.io/utility-heading-306919/client
       context: client
       docker:
         dockerfile: Dockerfile
@@ -24,7 +26,7 @@ build:
         manual:
           - src: '**/*.ts'
             dest: .
-    - image: trcwrx78/tickets
+    - image: us.gcr.io/utility-heading-306919/tickets
       context: tickets
       docker:
         dockerfile: Dockerfile
@@ -32,7 +34,7 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: trcwrx78/orders
+    - image: us.gcr.io/utility-heading-306919/orders
       context: orders
       docker:
         dockerfile: Dockerfile
@@ -40,7 +42,7 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: trcwrx78/expiration
+    - image: us.gcr.io/utility-heading-306919/expiration
       context: expiration
       docker:
         dockerfile: Dockerfile
@@ -48,7 +50,7 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: trcwrx78/payments
+    - image: us.gcr.io/utility-heading-306919/payments
       context: payments
       docker:
         dockerfile: Dockerfile

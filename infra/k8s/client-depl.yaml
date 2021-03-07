@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: trcwrx78/client
+          image: us.gcr.io/utility-heading-306919/client
 ---
 apiVersion: v1
 kind: Service
