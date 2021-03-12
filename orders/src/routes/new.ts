@@ -38,7 +38,6 @@ router.post(
     }
 
     // Make sure that the ticket is not already reserved
-
     const isReserved = await ticket.isReserved();
     if (isReserved) {
       throw new BadRequestError('Ticket is already reserved');
@@ -63,7 +62,6 @@ router.post(
       version: order.version,
       status: order.status,
       userId: order.userId,
-      // Requires a UTC timezone can't just use date need to convert to string also
       expiresAt: order.expiresAt.toISOString(),
       ticket: {
         id: ticket.id,
